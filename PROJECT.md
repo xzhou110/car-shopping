@@ -4,7 +4,7 @@ summary: Single-user used-car shortlist & compare — capture listings from scre
 status: live
 live: https://xzhou110.github.io/garage/
 repo: https://github.com/xzhou110/garage
-updated: 2026-09-24
+updated: 2026-10-06
 ---
 
 # Garage — used-car shortlist & compare
@@ -23,11 +23,11 @@ build and the template that [`apartment-shopping`](../apartment-shopping/PROJECT
 |---|---|
 | **Kind** | web app (static SPA, single user) |
 | **Stack** | Vite + React + TypeScript · Vitest (211 tests) · CSS tokens, light/dark · localStorage + URL-hash share |
-| **Local path** | `D:\Meaningful\AI\claude_projects\garage` (Vite app in `app/`) |
+| **Local path** | `D:\Meaningful\AI\garage` (Vite app in `app/`) |
 | **Run** | `cd app; npm run dev` → http://localhost:5178 · `npm test` · `npm run build` |
 | **Deploy** | push to `main` → `.github/workflows/deploy.yml` → GitHub Pages |
 | **Data / backends** | Seed cars in `app/src/data/cars.ts` (c1–c18) + photos `app/public/img/cN.jpg`; TCO engine **vendored** from car-tco-compare (`app/src/lib/tco/`); Google Sheets sync via the user's Apps Script Web App (URL in localStorage only). **$0/month.** |
-| **Related** | [`car-tco-compare`](../github/car-tco-compare/PROJECT.md) (source of the TCO engine) · [`apartment-shopping`](../apartment-shopping/PROJECT.md) (derived from this) · [`/build` plugin](../claude-marketplace/PROJECT.md) · skills: `ship-web-app`, `web-sheets-sync`, `web-ship-check` |
+| **Related** | [`car-tco-compare`](../car-tco-compare/PROJECT.md) (source of the TCO engine) · [`apartment-shopping`](../apartment-shopping/PROJECT.md) (derived from this) · [`/build` plugin](../claude-marketplace/PROJECT.md) · skills: `ship-web-app`, `web-sheets-sync`, `web-ship-check` |
 | **Started · last major change** | 2026-06-23 (first commit; ported from a single-file prototype) · 2026-06-25 (TCO ranking, ADR-009) |
 
 ## 3. Key things to know
