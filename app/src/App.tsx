@@ -86,7 +86,7 @@ export default function App() {
               <IconBrand />
             </div>
             <div className="brand-text">
-              <span className="brand-name">Garage</span>
+              <span className="brand-name">Car Shopping</span>
               <span className="brand-sub">Car shortlist &amp; compare</span>
             </div>
           </div>

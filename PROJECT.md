@@ -1,13 +1,14 @@
 ---
-name: garage
+name: car-shopping
+formerly: [garage]
 summary: Single-user used-car shortlist & compare — capture listings from screenshots, auto risk/value flags, rank by total cost of ownership, export to Google Sheets; static SPA on GitHub Pages
 status: live
-live: https://xzhou110.github.io/garage/
-repo: https://github.com/xzhou110/garage
+live: https://xzhou110.github.io/car-shopping/
+repo: https://github.com/xzhou110/car-shopping
 updated: 2026-10-06
 ---
 
-# Garage — used-car shortlist & compare
+# Car Shopping — Used-Car Shortlist & Compare
 
 ## 1. Summary
 A single-user dashboard built for xzhou's **used RAV4 Hybrid search** (target window ≈ June 2026):
@@ -23,7 +24,7 @@ build and the template that [`apartment-shopping`](../apartment-shopping/PROJECT
 |---|---|
 | **Kind** | web app (static SPA, single user) |
 | **Stack** | Vite + React + TypeScript · Vitest (211 tests) · CSS tokens, light/dark · localStorage + URL-hash share |
-| **Local path** | `D:\Meaningful\AI\garage` (Vite app in `app/`) |
+| **Local path** | `D:\Meaningful\AI\car-shopping` (Vite app in `app/`) |
 | **Run** | `cd app; npm run dev` → http://localhost:5178 · `npm test` · `npm run build` |
 | **Deploy** | push to `main` → `.github/workflows/deploy.yml` → GitHub Pages |
 | **Data / backends** | Seed cars in `app/src/data/cars.ts` (c1–c18) + photos `app/public/img/cN.jpg`; TCO engine **vendored** from car-tco-compare (`app/src/lib/tco/`); Google Sheets sync via the user's Apps Script Web App (URL in localStorage only). **$0/month.** |
@@ -31,6 +32,7 @@ build and the template that [`apartment-shopping`](../apartment-shopping/PROJECT
 | **Started · last major change** | 2026-06-23 (first commit; ported from a single-file prototype) · 2026-06-25 (TCO ranking, ADR-009) |
 
 ## 3. Key things to know
+- **Renamed on 2026-10-06:** project folder, GitHub repository, app title, CSV filename, and live URL now use `car-shopping` / Car Shopping. Existing saves still use `garage.v1` and `garage.theme`; keep these keys and the internal `useGarage` hook compatible. The live origin and local launch port (5178) are unchanged. `formerly: [garage]` connects old Command Center history to this project.
 - **Seed = source of truth.** `app/src/data/cars.ts`, one typed `Car` per entry; user edits (ratings, status, hand-added cars) live in their browser and are merged over the seed on load. Ids `cN` are stable and key the overlay + image filenames.
 - **Add-a-car = read the screenshot honestly.** Map vendor wording onto the 10 tracked features as **tri-state** (✓ / ✕ / ? unknown — never silently "no"); anything inferred from a package is marked "confirm". **Infer trim-STANDARD equipment** (e.g. JBL audio + heated seats are standard on a RAV4 Limited and won't appear in the sticker's add-ons). Panoramic roof ⟹ sunroof, one-way.
 - **Flag rules that were argued over:** one reported accident → **red** (ADR-008); annual mileage amber ≥ 15k, red ≥ 25k; Toyota hybrids keep 8-yr/100k hybrid + 10-yr/150k battery coverage — don't flag "out of warranty" off the 3/36 basic.
@@ -66,6 +68,7 @@ Deployed, stable, no active build. Open: `c10.jpg` missing; untracked root files
 `review-findings.md` pre-ship review is a dated record. Detail: [STATE.md](STATE.md).
 
 ### Change highlights
+- 2026-10-06 — Renamed Garage to Car Shopping locally and on GitHub, updated related projects and portfolio links, and retained existing browser storage.
 - 2026-06-25 — TCO ranking: vendored car-tco-compare engine, TCO sort/compare row/detail breakdown (ADR-009); c18 spec sheet self-hosted.
 - 2026-06-23 → 24 — public GitHub Pages deploy (ADR-007); Sheets sync via Apps Script; accident=1 → red (ADR-008); id badges + id search; c1–c17 added across sessions.
 - 2026-06-23 — full `/build` (lean crew) porting the 257 KB single-file prototype to Vite/React/TS; first commit.

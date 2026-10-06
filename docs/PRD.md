@@ -1,4 +1,4 @@
-# PRD — Garage (local used-car shortlist & compare)
+# PRD — Car Shopping (local used-car shortlist & compare)
 
 **Author:** orchestrator/PM · **Date:** 2026-06-22 · **Status:** approved to build
 

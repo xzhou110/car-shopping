@@ -1,4 +1,4 @@
-# Review Findings — Garage
+# Review Findings — Car Shopping
 
 > **Who reviewed:** The dedicated `reviewer` subagent could not run — two spawn attempts returned
 > **529 Overloaded** (API server-side, 0 tool uses). To avoid blocking a time-sensitive build, the

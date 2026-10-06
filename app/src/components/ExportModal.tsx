@@ -62,7 +62,7 @@ export function ExportModal({ open, cars, settings, sheetUrl, onClose, onToast }
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = 'garage_cars.csv';
+    a.download = 'car-shopping-cars.csv';
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);

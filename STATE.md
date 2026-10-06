@@ -1,7 +1,7 @@
 # STATE
 
-- **Product:** Garage — a local used-car shortlist & compare dashboard (personal, single-user). Buying deadline: end of June 2026.
-- **Phase:** ✅ Built, verified, and **deployed to GitHub Pages** — live at https://xzhou110.github.io/garage/ (public repo `xzhou110/garage`, auto-deploy from `main` via Actions). Also runs locally (`cd app && npm run dev` → http://localhost:5178). 18 cars (c1–c18). Sheet URL verified absent from the public bundle.
+- **Product:** Car Shopping — a local used-car shortlist & compare dashboard (personal, single-user). Buying deadline: end of June 2026.
+- **Phase:** ✅ Built, verified, and **deployed to GitHub Pages** — live at https://xzhou110.github.io/car-shopping/ (public repo `xzhou110/car-shopping`, auto-deploy from `main` via Actions). Also runs locally (`cd app && npm run dev` → http://localhost:5178). 18 cars (c1–c18). Sheet URL verified absent from the public bundle.
 - **Done:**
   - Vite/React/TS migration of the prototype complete. Pure engine ported verbatim (+ later additions: panoramic-roof implication, prior-theft risk flag, vendored TCO engine) + **211 unit tests pass**.
   - Full UI (grid, compare, detail, filters/sort, add/edit form, export, settings, theme) built and wired.
@@ -24,8 +24,8 @@
   - **Feature added (2026-06-25): live TCO ranking** (ADR-009). Brought the **Total Cost of Ownership engine** over
     from the sibling repo `car-tco-compare` by **vendoring its pure calculator** into `app/src/lib/tco/`
     (`engine.ts` + `depreciation.ts` + `reference.ts`, verbatim with provenance headers + a `resolve.ts` adapter
-    mapping a garage `Car`→engine `Vehicle`). Evaluated and rejected a shared npm package / git submodule / runtime
-    API (keeps garage a dependency-free static SPA — see ADR-009). TCO is now **computed live** from the existing
+    mapping a car-shopping `Car`→engine `Vehicle`). Evaluated and rejected a shared npm package / git submodule / runtime
+    API (keeps car-shopping a dependency-free static SPA — see ADR-009). TCO is now **computed live** from the existing
     **Assumptions → years + miles** knobs: depreciation (RAV4-anchored retention curve) + fuel + insurance +
     maintenance/repairs + taxes, cash basis, CA averages. The old `tco5yr` field became a **manual override**
     (Edmunds/AAA), the computed value is the default, and a latent bug (per-year divided a fixed "5-yr" number by a

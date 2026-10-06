@@ -49,6 +49,7 @@ export const DEFAULT_FILTERS: Filters = {
   reqFeatures: [],
 };
 
+// Keep the original keys across the Car Shopping rename so existing browser saves still load.
 const STORE_KEY = 'garage.v1';
 const THEME_KEY = 'garage.theme';
 

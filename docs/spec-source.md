@@ -1,4 +1,4 @@
-# Car Shopping Garage — Handoff Spec (source of truth for the port)
+# Car Shopping Car Shopping — Handoff Spec (source of truth for the port)
 
 > Verbatim copy of the user's handoff spec (originally a Google Doc) plus the user's added
 > instructions. Agents: read this first. The original single-file prototype is at

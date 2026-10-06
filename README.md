@@ -1,10 +1,12 @@
-# Garage — used-car shortlist & compare
+# Car Shopping — Used-Car Shortlist & Compare
 
 A single-user dashboard for shopping used cars: capture each candidate from a screenshot, see auto
 risk/value flags, compare side-by-side on **out-the-door / total cost of ownership**, and export to
 Google Sheets.
 
-**Live:** https://xzhou110.github.io/garage/ — deployed from `main` via GitHub Actions (`.github/workflows/deploy.yml`).
+Formerly **Garage**. Renamed to **Car Shopping** on October 6, 2026 so its purpose is clear from the name. Existing browser saves continue to work in the same browser and profile.
+
+**Live:** https://xzhou110.github.io/car-shopping/ — deployed from `main` via GitHub Actions (`.github/workflows/deploy.yml`).
 The Google Sheet sync URL is **never** in the code/bundle (it lives only in your browser's localStorage), so
 it is not exposed by the public site. Note: localStorage is per-domain, so set your Sheet URL once on the live
 site too (Assumptions), separate from localhost. Runs locally as well (below).
@@ -77,7 +79,7 @@ A browser app can't write to your Drive without auth, so set this up once:
    request doesn't need a Google login; the script still runs as **you** and writes only **your** sheet. With
    "Only myself" a browser POST is blocked and nothing is written.)*
 4. Copy the **Web app URL** (ends in `/exec`, not `/dev`).
-5. In Garage: **Assumptions** → paste it into **Google Sheet sync URL** → **Apply**.
+5. In Car Shopping: **Assumptions** → paste it into **Google Sheet sync URL** → **Apply**.
 6. Open the **Export** dialog → click **Sync to Google Sheet**, then open your sheet — title row + one row per
    car; re-syncing overwrites in place. (Google's CORS hides the response, so the button just says "sent" —
    glance at the sheet to confirm.)
@@ -93,7 +95,7 @@ dialog (the header **Export** button only opens the dialog).
 
 ## Total cost of ownership (TCO)
 Sticker price is a poor way to rank near-identical cars — a cheaper car that depreciates faster or burns more
-fuel can cost *more* to own. Garage estimates each car's **5-component lifetime cost** (depreciation + fuel +
+fuel can cost *more* to own. Car Shopping estimates each car's **5-component lifetime cost** (depreciation + fuel +
 insurance + maintenance/repairs + taxes & registration) over **your** ownership horizon and uses it to rank the board.
 
 - **Choose how long you'll keep it.** Open **Assumptions** and set **Ownership horizon (years)** + **Annual miles**.
@@ -108,7 +110,7 @@ insurance + maintenance/repairs + taxes & registration) over **your** ownership 
   Cost to Own or AAA lookup) and that replaces the estimate for that car everywhere.
 
 The engine is a **vendored copy** of the pure calculator from the sibling project
-[`car-tco-compare`](https://github.com/xzhou110/car-tco-compare), kept dependency-free so Garage stays a static,
+[`car-tco-compare`](https://github.com/xzhou110/car-tco-compare), kept dependency-free so Car Shopping stays a static,
 offline-capable app. See `app/src/lib/tco/README.md` for provenance/re-sync and **DECISIONS.md → ADR-009** for why.
 
 ## The 10 tracked features
