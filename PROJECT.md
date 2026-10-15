@@ -40,6 +40,7 @@ build and the template that [`apartment-shopping`](../apartment-shopping/PROJECT
 - The Google Sheet Web-App URL is the user's secret — stored as `settings.sheetUrl` inside the `garage.v1` localStorage blob, never bundled (verified by grepping the built JS). Never move it into a `VITE_*` var: Vite inlines those into the public bundle (ADR-007). Sync is a `mode: 'no-cors'` POST of `{ rows }` from `app/src/components/ExportModal.tsx`, so the response is opaque and the toast can only say "sent". The Apps Script recipe + the "access = Anyone" trap are in README + the `web-sheets-sync` skill.
 - Repo is **public** by the user's choice (ADR-007 reversed the local-only ADR-003). Standing OK to push/deploy after validation.
 - **Status is a user fact.** A car stays `Shortlist` until the owner states outright that he bought or ordered it; never infer Bought or on-order from availability news (c18 once shipped as Bought from "may arrive earlier" and stuck in every visitor's localStorage).
+- **Dealer and CRM document links expire.** A DriveCentric-style spec sheet URL carries `Expires=` / `Signature=` and dies within hours; download the PDF into `app/public/docs/` and link the self-hosted copy (c18).
 - Known gap: **`c10.jpg` is missing** (seed references it → placeholder shows; still missing 2026-10-15).
 - Three untracked analysis files sit at the repo root (`cars-comparison.md/.tsv`, `rav4-shortlist-excl-2022.md`) — decide: commit, move to `docs/`, or delete.
 
