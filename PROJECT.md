@@ -79,9 +79,8 @@ sends listing (+ Carfax) screenshots → I extract, append, crop/save the photo,
 
 ### Current state & open items
 Deployed, stable, no active build. Open: `c10.jpg` missing; untracked root files (above); the
-`review-findings.md` pre-ship review is a dated record; README still says "9 tracked features" and
-`npm run dev → :5178` (the app tracks 10; plain `npm run dev` serves :5173 — 5178 is the workspace
-launch entry's port). Detail: [STATE.md](STATE.md).
+`review-findings.md` pre-ship review is a dated record (its "9 features" was true then; the app tracks 10
+since the panoramic roof). Detail: [STATE.md](STATE.md).
 
 ### Change highlights
 - 2026-10-16 — Build-commit stamp: the built page carries `<meta name="build-commit">` with the deployed commit (GitHub Actions' `GITHUB_SHA`; `local` for a local build), so a deploy is proven live by that id, not by a `?t=` query the Pages CDN ignores (app/index.html, app/vite.config.ts).

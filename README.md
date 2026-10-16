@@ -16,8 +16,10 @@ site too (Assumptions), separate from localhost. Runs locally as well (below).
 ```bash
 cd app
 npm install        # first time only (already done)
-npm run dev        # → http://localhost:5178
+npm run dev        # → http://localhost:5173 (Vite's default port)
 ```
+
+The workspace launch entry `car-shopping` (in `D:/Meaningful/AI/.claude/launch.json`) runs the same dev server on http://127.0.0.1:5178.
 
 Other commands (from `app/`):
 - `npm run build` — type-check + production bundle into `app/dist/`
