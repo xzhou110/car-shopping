@@ -5,7 +5,7 @@ summary: Single-user used-car shortlist & compare — capture listings from scre
 status: live
 live: https://xzhou110.github.io/car-shopping/
 repo: https://github.com/xzhou110/car-shopping
-updated: 2026-10-15
+updated: 2026-10-16
 ---
 
 # Car Shopping — Used-Car Shortlist & Compare
@@ -84,6 +84,7 @@ Deployed, stable, no active build. Open: `c10.jpg` missing; untracked root files
 launch entry's port). Detail: [STATE.md](STATE.md).
 
 ### Change highlights
+- 2026-10-16 — Build-commit stamp: the built page carries `<meta name="build-commit">` with the deployed commit (GitHub Actions' `GITHUB_SHA`; `local` for a local build), so a deploy is proven live by that id, not by a `?t=` query the Pages CDN ignores (app/index.html, app/vite.config.ts).
 - 2026-10-06 — Renamed Garage to Car Shopping locally and on GitHub, updated related projects and portfolio links, and retained existing browser storage.
 - 2026-06-25 — TCO ranking: vendored car-tco-compare engine, TCO sort/compare row/detail breakdown (ADR-009); c18 spec sheet self-hosted.
 - 2026-06-23 → 24 — public GitHub Pages deploy (ADR-007); Sheets sync via Apps Script; accident=1 → red (ADR-008); id badges + id search; c1–c17 added across sessions.
