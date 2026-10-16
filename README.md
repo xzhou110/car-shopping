@@ -30,11 +30,11 @@ Other commands (from `app/`):
 ## How you'll use it
 
 1. **Add a car** — paste me a listing screenshot (and a Carfax/AutoCheck shot + the URL if you have them).
-   I extract year/trim/price/mileage/title/accidents/features/etc., map vendor wording onto the 9 tracked
+   I extract year/trim/price/mileage/title/accidents/features/etc., map vendor wording onto the 10 tracked
    features (marking anything *inferred from a package* as "confirm"), crop the photo, and append the car to
    `src/data/cars.ts`. You can also click **+ Add car** to enter one by hand, and **Edit** any card.
 2. **Triage** — each card shows price + transfer + ≈ out-the-door + **estimated N-yr cost to own** (TCO over your
-   horizon), the 9-feature pill row (✓ / ✕ / **? = unknown**),
+   horizon), the 10-feature pill row (✓ / ✕ / **? = unknown**),
    and auto risk/value flags. A colored top border flags overall risk (red) / caution (amber) / good (green). A
    small car-id badge (e.g. `c2`) on each photo maps the card to the data file / chat references — and the search
    box matches the id, so typing `c4` jumps straight to that car.
