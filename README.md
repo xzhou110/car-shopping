@@ -22,9 +22,11 @@ npm run dev        # → http://localhost:5173 (Vite's default port)
 The workspace launch entry `car-shopping` (in `D:/Meaningful/AI/.claude/launch.json`) runs the same dev server on http://127.0.0.1:5178.
 
 Other commands (from `app/`):
+- `npm run check` — lint + type-check + unit tests + production bundle: the validation before any push (GitHub Actions runs it before deploying)
 - `npm run build` — type-check + production bundle into `app/dist/`
 - `npm run preview` — serve the built bundle
 - `npm test` — run the engine unit tests (211 tests)
+- `npm run lint` — ESLint with the engineering standard's boundary and size rules
 
 > Data persists in your browser's localStorage (in-app edits: ratings, status, new cars). The committed
 > seed lives in `app/src/data/cars.ts` and is the source of truth I edit when you send screenshots.
