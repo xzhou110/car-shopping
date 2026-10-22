@@ -6,6 +6,7 @@ status: live
 live: https://xzhou110.github.io/car-shopping/
 repo: https://github.com/xzhou110/car-shopping
 updated: 2026-10-21
+category: products
 ---
 
 # Car Shopping — Used-Car Shortlist & Compare
