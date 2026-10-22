@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { money, miles, featState, featCount, yn } from './format';
+import { money, miles, featState, featCount, yn, safeHref } from './format';
 import type { Car, FeatureKey } from '../types';
 
 // ---------------------------------------------------------------------------
@@ -276,5 +276,24 @@ describe('yn', () => {
 
   it("'unk' → '?'", () => {
     expect(yn('unk')).toBe('?');
+  });
+});
+
+// ---------------------------------------------------------------------------
+// safeHref() — XSS guard for listing links (ported from apartment-shopping, review M1)
+// ---------------------------------------------------------------------------
+describe('safeHref — only http(s) pass (XSS guard)', () => {
+  it('passes https', () => expect(safeHref('https://x.com/a')).toBe('https://x.com/a'));
+  it('passes http', () => expect(safeHref('http://x.com')).toBe('http://x.com'));
+  it('blocks mailto (a listing link is never an email)', () => expect(safeHref('mailto:a@b.com')).toBeUndefined());
+  it('blocks javascript:', () => expect(safeHref('javascript:alert(1)')).toBeUndefined());
+  it('blocks javascript: in mixed case with leading space', () => expect(safeHref('  JavaScript:alert(1)')).toBeUndefined());
+  it('blocks data: html', () => expect(safeHref('data:text/html,<script>')).toBeUndefined());
+  it('blocks relative/garbage', () => expect(safeHref('/foo')).toBeUndefined());
+  it('trims then validates', () => expect(safeHref('  https://x.com  ')).toBe('https://x.com'));
+  it('null/empty → undefined', () => {
+    expect(safeHref(null)).toBeUndefined();
+    expect(safeHref(undefined)).toBeUndefined();
+    expect(safeHref('')).toBeUndefined();
   });
 });

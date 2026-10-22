@@ -3,6 +3,9 @@
 > Verbatim copy of the user's handoff spec (originally a Google Doc) plus the user's added
 > instructions. Agents: read this first. The original single-file prototype is at
 > `D:/Downloads/garage.html` (visual + behavioral source of truth — port it, don't reinvent).
+>
+> Note (2026-10-22, not part of the verbatim spec): the URL-hash share/hydrate this spec asks for in
+> §§ 3, 8 and 10 was removed for security; the app now loads only from localStorage (DECISIONS.md ADR-011).
 
 ## 0. User's added instructions (2026-06-22)
 - Buying a car by **end of June 2026**; actively shopping now. The tool must be usable immediately.

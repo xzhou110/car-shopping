@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { ReactElement } from 'react';
 import type { Car, OwnerType, Settings } from '../types';
 import { FEATURES } from '../data/features';
-import { carName, featCount, featState, miles, money } from '../lib/format';
+import { carName, featCount, featState, miles, money, safeHref } from '../lib/format';
 import { effectiveTco, isTcoEstimated, otd, totalFees } from '../lib/derive';
 import { getFlags, signalLevel } from '../lib/flags';
 import { assetUrl, flagIcon } from './helpers';
@@ -250,10 +250,10 @@ export function Card({ car, settings, inCompare, onToggleCompare, onOpen, onSetY
             <RatingStars label="Expert" value={car.expertRating} variant="r-exp" />
             <RatingStars label="You" value={car.rating} variant="r-you" onSet={(n) => onSetYou(car.id, n)} />
           </div>
-          {car.sourceUrl ? (
+          {safeHref(car.sourceUrl) ? (
             <a
               className="listing-link"
-              href={car.sourceUrl}
+              href={safeHref(car.sourceUrl)}
               target="_blank"
               rel="noopener noreferrer"
             >

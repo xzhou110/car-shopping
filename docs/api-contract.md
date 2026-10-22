@@ -65,9 +65,10 @@ Implements UI + state. **Imports the finished Lane A modules + `types.ts`.** Doe
 or `types.ts`. May read `format/derive/flags` signatures above to build against; integration happens after both
 lanes return.
 
-- `state/useGarage.ts`: `{ cars, settings, filters, ... }` with localStorage autosave (key `garage.v1`), URL-hash
+- `state/useGarage.ts`: `{ cars, settings, filters, ... }` with localStorage autosave (key `garage.v1`),
   hydrate-merge (so old saves gain new fields = spread over `DEFAULT` car), and CRUD (add/update/delete car,
   set ratings/status, update settings/filters). Provide a `useGarage()` hook returning state + actions.
+  (The original contract also had a URL-hash import; it was removed on 2026-10-22 for security, ADR-011.)
 - `components/`: `Card`, `Grid`, `CompareTable`, `DetailModal`, `Filters`, `ExportModal`, `SettingsModal`,
   `CarForm` (add/edit), `ThemeToggle`. Use `<dialog>` for modals. Render per spec §5.1–5.7.
 - Theme: toggle writes `localStorage['garage.theme']` and sets `data-theme` on `<html>`; no-flash init is already

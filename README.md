@@ -25,7 +25,7 @@ Other commands (from `app/`):
 - `npm run check` — lint + type-check + unit tests + production bundle: the validation before any push (GitHub Actions runs it before deploying)
 - `npm run build` — type-check + production bundle into `app/dist/`
 - `npm run preview` — serve the built bundle
-- `npm test` — run the engine unit tests (211 tests)
+- `npm test` — run the engine unit tests (223 tests)
 - `npm run lint` — ESLint with the engineering standard's boundary and size rules
 
 > Data persists in your browser's localStorage (in-app edits: ratings, status, new cars). The committed
@@ -134,7 +134,7 @@ app/src/
   data/               cars.ts (seed = source of truth) · features.ts · sheetCols.ts
   lib/                flags.ts · derive.ts · format.ts · exportSheet.ts  (PURE, unit-tested)
   lib/tco/            vendored TCO engine (engine.ts · depreciation.ts · reference.ts) + resolve.ts adapter
-  state/useGarage.ts  cars + settings + filters; localStorage autosave + URL-hash share
+  state/useGarage.ts  cars + settings + filters; localStorage autosave (no URL-hash import, ADR-011)
   components/         Card · Grid · CompareTable · DetailModal · Filters · CarForm · Export/Settings modals
 docs/                 PRD.md · spec-source.md · api-contract.md
 ```

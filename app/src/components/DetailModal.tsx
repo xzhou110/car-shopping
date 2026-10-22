@@ -2,7 +2,7 @@ import type { ReactElement, ReactNode } from 'react';
 import { useState } from 'react';
 import type { Car } from '../types';
 import { FEATURES } from '../data/features';
-import { carName, featState, miles, money } from '../lib/format';
+import { carName, featState, miles, money, safeHref } from '../lib/format';
 import { effectiveTco, isTcoEstimated, milesPerYr, otd, tcoBreakdown, tcoPerMile, tcoPerYear } from '../lib/derive';
 import { GARAGE_TCO_NOTE, type ByCategory, type CategoryKey } from '../lib/tco';
 import { getFlags } from '../lib/flags';
@@ -277,8 +277,8 @@ export function DetailModal({
             )}
 
             <div className="det-actions">
-              {car.sourceUrl && (
-                <a className="btn btn-accent" href={car.sourceUrl} target="_blank" rel="noopener noreferrer">
+              {safeHref(car.sourceUrl) && (
+                <a className="btn btn-accent" href={safeHref(car.sourceUrl)} target="_blank" rel="noopener noreferrer">
                   Open listing <IconExt />
                 </a>
               )}

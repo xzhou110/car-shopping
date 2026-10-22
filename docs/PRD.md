@@ -16,7 +16,7 @@ them honestly on out-the-door cost + condition + features, and pick one this wee
 - Port the prototype (`garage.html`) to Vite + React + TS with a **pure, unit-tested** logic engine.
 - Card grid, risk/value flags, compare table (best/worst highlighting), detail modal, filters/sort, dual ratings.
 - **Add/Edit car form** so the owner can tweak without Claude; **delete**.
-- localStorage persistence (autosave) + URL-hash share + hydrate-merge.
+- localStorage persistence (autosave) + hydrate-merge. (The URL-hash share import first built here was removed on 2026-10-22 for security: DECISIONS.md ADR-011.)
 - Light/dark theme with no-flash init.
 - Export: Download CSV + Copy-for-Sheets (TSV) + Copy-JSON (titles row 1, one car per row).
 - Seed images externalized to `public/img/`.

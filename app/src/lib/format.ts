@@ -35,6 +35,17 @@ export function yn(state: FeatState): string {
   return state === 'yes' ? 'Yes' : state === 'no' ? 'No' : '?';
 }
 
+/**
+ * A safe link target: returns the trimmed URL only if it is http(s), else undefined.
+ * React escapes text but NOT URL schemes — a `javascript:` / `data:text/html` sourceUrl (typed in
+ * the form) would execute on click. Use this everywhere car.sourceUrl becomes an <a href>.
+ * (Ported from apartment-shopping's code review M1, minus mailto: a car listing link is never an email.)
+ */
+export function safeHref(u: string | null | undefined): string | undefined {
+  const s = (u || '').trim();
+  return /^https?:\/\//i.test(s) ? s : undefined;
+}
+
 /** Display name `${year} ${make} ${model}` (prototype:581). */
 export function carName(c: Car): string {
   return `${c.year || ''} ${c.make || ''} ${c.model || ''}`.trim();

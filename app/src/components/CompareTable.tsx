@@ -2,7 +2,7 @@ import { useState } from 'react';
 import type { ReactElement, ReactNode } from 'react';
 import type { Car, Settings } from '../types';
 import { FEATURES } from '../data/features';
-import { carName, featCount, featState, miles, money } from '../lib/format';
+import { carName, featCount, featState, miles, money, safeHref } from '../lib/format';
 import { effectiveTco, otd, tcoPerMile, tcoPerYear } from '../lib/derive';
 import { getFlags } from '../lib/flags';
 import { assetUrl, STATUS_BADGE } from './helpers';
@@ -129,14 +129,16 @@ function buildRows(settings: Settings): Row[] {
     ['Notes', (c) => c.notes || '—', {}],
     [
       'Listing',
-      (c) =>
-        c.sourceUrl ? (
-          <a href={c.sourceUrl} target="_blank" rel="noopener noreferrer">
+      (c) => {
+        const href = safeHref(c.sourceUrl);
+        return href ? (
+          <a href={href} target="_blank" rel="noopener noreferrer">
             Open <IconExt />
           </a>
         ) : (
           '—'
-        ),
+        );
+      },
       {},
     ],
   ];

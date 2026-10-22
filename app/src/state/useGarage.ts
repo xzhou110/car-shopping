@@ -157,18 +157,15 @@ function parsePersist(raw: string | null): RawPersist | null {
   }
 }
 
-/** Hash wins over localStorage (explicit share); both are overlaid on the authoritative seed. */
+/**
+ * Load persisted state from localStorage, overlaid on the authoritative seed.
+ * (No URL-hash import: a read-only share path with no writer was a data-integrity/security risk —
+ * a crafted #hash could silently persist attacker cars + a sheetUrl into the store. Removed per
+ * apartment-shopping's code review M2/N1. If share links are added later, build an explicit writer +
+ * an "accept" gate, and strip settings.sheetUrl on import.)
+ */
 function loadInitial(): PersistShape {
-  let fromHash: RawPersist | null = null;
-  const h = location.hash.replace(/^#/, '');
-  if (h) {
-    try {
-      fromHash = parsePersist(decodeURIComponent(escape(atob(h))));
-    } catch {
-      fromHash = null;
-    }
-  }
-  const persisted = fromHash || parsePersist(localStorage.getItem(STORE_KEY));
+  const persisted = parsePersist(localStorage.getItem(STORE_KEY));
   const removed = persisted?.removed ?? [];
   return {
     cars: mergeWithSeed(persisted?.cars ?? [], removed),
