@@ -5,7 +5,7 @@ summary: Single-user used-car shortlist & compare — capture listings from scre
 status: live
 live: https://xzhou110.github.io/car-shopping/
 repo: https://github.com/xzhou110/car-shopping
-updated: 2026-10-16
+updated: 2026-10-21
 ---
 
 # Car Shopping — Used-Car Shortlist & Compare
@@ -23,10 +23,10 @@ build and the template that [`apartment-shopping`](../apartment-shopping/PROJECT
 | | |
 |---|---|
 | **Kind** | web app (static SPA, single user) |
-| **Stack** | Vite + React + TypeScript · Vitest (211 tests) · CSS tokens, light/dark · localStorage autosave (a base64 state `#hash`, if present, overrides it) |
+| **Stack** | Vite + React + TypeScript · Vitest (211 tests) · ESLint (the standard's boundary and size rules, `app/eslint.config.js`) · CSS tokens, light/dark · localStorage autosave (a base64 state `#hash`, if present, overrides it) |
 | **Local path** | `D:\Meaningful\AI\car-shopping` (Vite app in `app/`) |
-| **Run** | `cd app; npm run dev` → http://localhost:5173 (Vite default; no port in `vite.config.ts`) · workspace launch entry `car-shopping` ([`.claude/launch.json`](../.claude/launch.json)) → http://127.0.0.1:5178 · `npm test` · `npm run build` (= `tsc --noEmit && vite build`) |
-| **Deploy** | push to `main` → `.github/workflows/deploy.yml` → GitHub Pages |
+| **Run** | `cd app; npm run dev` → http://localhost:5173 (Vite default; no port in `vite.config.ts`) · workspace launch entry `car-shopping` ([`.claude/launch.json`](../.claude/launch.json)) → http://127.0.0.1:5178 · `npm run check` (= lint, typecheck, tests, build; the validation for any change) · `npm test` · `npm run lint` · `npm run build` (= `tsc --noEmit && vite build`) |
+| **Deploy** | push to `main` → `.github/workflows/deploy.yml`: `check` job (`npm run check`) → `build` → GitHub Pages; `check.yml` runs the same gate on every other branch and pull request (ADR-010) |
 | **Data / backends** | Seed cars in `app/src/data/cars.ts` (c1–c18) + photos `app/public/img/cN.jpg`; TCO engine **vendored** from car-tco-compare (`app/src/lib/tco/`); Google Sheets sync via the user's Apps Script Web App (URL in localStorage only). **$0/month.** |
 | **Related** | [`car-tco-compare`](../car-tco-compare/PROJECT.md) (source of the TCO engine; its RAV4 Deal Alerts email backend is a separate thing, not part of this app) · [`apartment-shopping`](../apartment-shopping/PROJECT.md) (derived from this) · [`/build` plugin](../claude-marketplace/PROJECT.md) · skills: `ship-web-app`, `web-sheets-sync`, `web-ship-check` |
 | **Started · last major change** | 2026-06-23 (first commit; ported from a single-file prototype) · 2026-06-25 (TCO ranking, ADR-009) |
@@ -62,11 +62,17 @@ app/src/
   components/         Card · Grid · CompareTable · DetailModal · Filters · CarForm · Export/Settings modals
 docs/                 PRD.md · spec-source.md · api-contract.md
 ```
+Skeleton aliases for the engineering standard (`D:/Meaningful/AI/agent-skills/rules/engineering-principles.md`):
+`lib/` = engine (pure; the lint forbids framework, I/O and upward imports there), `components/` = ui,
+`state/` = the hooks that own storage and state (no adapters folder), `App.tsx` + `main.tsx` = the app shell.
 
 ### How to work on it
-`cd app; npm install` (once) → `npm run dev` / `npm test` / `npm run build`. Validate in the
-running app, push to `main`, confirm the live URL serves the new bundle. Standing workflow: user
-sends listing (+ Carfax) screenshots → I extract, append, crop/save the photo, validate, push.
+`cd app; npm install` (once) → `npm run dev` while working, then `npm run check` (lint, typecheck,
+tests, build) before any push: it is the validation for every change and the same command Actions
+runs before anything deploys (ADR-010). Validate in the running app, push to `main`, confirm the
+Actions run is green and the live page's `<meta name="build-commit">` equals the pushed commit.
+Standing workflow: user sends listing (+ Carfax) screenshots → I extract, append, crop/save the
+photo, validate, push.
 
 ### Domain rules (RAV4 trims, as seen on this board's stickers — confirm per listing)
 - A feature that is standard for the trim is absent from the sticker's "added options" list; still mark it ✓ (the c13 "no JBL" mistake, corrected by the user).
@@ -81,8 +87,12 @@ sends listing (+ Carfax) screenshots → I extract, append, crop/save the photo,
 Deployed, stable, no active build. Open: `c10.jpg` missing; untracked root files (above); the
 `review-findings.md` pre-ship review is a dated record (its "9 features" was true then; the app tracks 10
 since the panoramic roof). Detail: [STATE.md](STATE.md).
+Engineering-standard debt (audit 2026-10-21): the lint found none; three files over the 300-line reading
+limit (`CarForm.tsx` 430, `useGarage.ts` 334, `DetailModal.tsx` 311) are split at their next touch
+(retrofit step 4); the Node version is not pinned (CI runs 20, the machine 24; both pass).
 
 ### Change highlights
+- 2026-10-21 — Command surface and CI gate (ADR-010): ESLint with the standard's boundary and size rules, `npm run lint` and `npm run check`, a `check` job the deploy's `build` job needs, and `check.yml` for other branches and pull requests. No behavior or UI change.
 - 2026-10-16 — Build-commit stamp: the built page carries `<meta name="build-commit">` with the deployed commit (GitHub Actions' `GITHUB_SHA`; `local` for a local build), so a deploy is proven live by that id, not by a `?t=` query the Pages CDN ignores (app/index.html, app/vite.config.ts).
 - 2026-10-06 — Renamed Garage to Car Shopping locally and on GitHub, updated related projects and portfolio links, and retained existing browser storage.
 - 2026-06-25 — TCO ranking: vendored car-tco-compare engine, TCO sort/compare row/detail breakdown (ADR-009); c18 spec sheet self-hosted.
@@ -92,7 +102,7 @@ since the panoramic roof). Detail: [STATE.md](STATE.md).
 ## 5. Pointers
 - [README.md](README.md) — product face incl. the Google Sheet one-time setup + troubleshooting, TCO explanation, the 10 features.
 - [docs/PRD.md](docs/PRD.md) · [docs/spec-source.md](docs/spec-source.md) · [docs/api-contract.md](docs/api-contract.md).
-- [DECISIONS.md](DECISIONS.md) — ADR-001…009 (ADR-002 seed-vs-Sheet, ADR-008 accident flag, ADR-009 vendoring).
+- [DECISIONS.md](DECISIONS.md) — ADR-001…010 (ADR-002 seed-vs-Sheet, ADR-008 accident flag, ADR-009 vendoring, ADR-010 command surface and CI gate).
 - [STATE.md](STATE.md) · [RUN_LOG.md](RUN_LOG.md) · [review-findings.md](review-findings.md).
 - `app/src/lib/tco/README.md` — engine provenance + how to re-sync from car-tco-compare.
 - Memory: `garage-app.md` was folded into this file on 2026-10-15 (nothing durable remains there). Skills: `ship-web-app`, `web-sheets-sync`, `web-ship-check`.
