@@ -106,6 +106,7 @@ unsplit and deferred both splits to a dedicated change (ADR-011); the Node versi
 ## 5. Pointers
 - [README.md](README.md) — product face incl. the Google Sheet one-time setup + troubleshooting, TCO explanation, the 10 features.
 - [docs/PRD.md](docs/PRD.md) · [docs/spec-source.md](docs/spec-source.md) · [docs/api-contract.md](docs/api-contract.md).
+- [docs/BRANDING.md](docs/BRANDING.md) — the product icon (`app/public/favicon.svg`): concept, colors, quality bar, checks.
 - [DECISIONS.md](DECISIONS.md) — ADR-001…011 (ADR-002 seed-vs-Sheet, ADR-008 accident flag, ADR-009 vendoring, ADR-010 command surface and CI gate, ADR-011 hash import removed and safe listing links).
 - [STATE.md](STATE.md) · [RUN_LOG.md](RUN_LOG.md) · [review-findings.md](review-findings.md).
 - `app/src/lib/tco/README.md` — engine provenance + how to re-sync from car-tco-compare.
