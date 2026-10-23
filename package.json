@@ -8,6 +8,7 @@
     "lint": "npm --prefix app run lint",
     "typecheck": "npm --prefix app run typecheck",
     "build": "npm --prefix app run build",
+    "ai-tags": "npm --prefix app run ai-tags",
     "check": "npm --prefix app run check"
   }
 }
