@@ -12,8 +12,8 @@
     "lint": "eslint .",
     "test": "vitest run",
     "test:watch": "vitest",
-    "ai-tags": "node ../scripts/image-ai-tags.mjs check public",
-    "check": "npm run lint && npm run typecheck && npm test && npm run ai-tags && npm run build"
+    "ai-tags": "node ../../agent-skills/scripts/image-ai-tags.mjs strip public && node ../../agent-skills/scripts/image-ai-tags.mjs check public",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
     "react": "^18.3.1",
