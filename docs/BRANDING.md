@@ -23,8 +23,6 @@ It belongs to the XuSeak product-icon family (owner approval 2026-10-21, the sha
 
 The symbol must read at 16 px (a tab) and 30 px (the card) on light and dark surroundings, stay distinct from the sibling icons, and keep one gold accent. Checked 2026-10-23: rendered at 16, 30, 64 and 128 px on light and dark with headless Chrome; the build references `./favicon.svg` and copies it; the dev server answers `image/svg+xml`; the image decodes in a real browser tab; the X Command Center card shows it.
 
-**No AI tags (owner, 2026-10-23).** When an icon, logo or image is created or brought into `app/public`, run `npm run ai-tags` once, at that moment: it removes any AI tag (a C2PA record or another) with agent-skills' shared checker without changing a pixel, then confirms 0 remain. It is an intake step, not a recurring one: it is not part of `npm run check`, CI or any schedule. The X Command Center double-checks the icon when it brings it in, as a backup.
-
 Considered and not chosen: the car seen from the front with gold headlights (bolder, but reads as a blob at 16 px).
 
 Not covered: an iPhone home-screen icon (`apple-touch-icon`, a PNG) and Safari's tab, whose SVG favicon support was not checked.
