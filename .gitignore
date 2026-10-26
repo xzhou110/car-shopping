@@ -17,3 +17,6 @@ Thumbs.db
 
 # scratch
 app/scripts/_extract.mjs
+
+# Assistant workflow files hold machine paths; the launcher reads them from disk, never from GitHub (2026-10-25)
+.claude/
