@@ -5,9 +5,9 @@
   "type": "module",
   "description": "Local used-car shortlist & compare dashboard",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5178 --strictPort",
     "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
+    "preview": "vite preview --port 4178 --strictPort",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
     "test": "vitest run",
